@@ -1,0 +1,27 @@
+name: Go-Test
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+    
+ jobs:
+  gofmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+          
+      - name: Checking Go-Lint
+        run : |
+          sudo apt-get update && sudo apt-get install golint
+          make gotasks
+      - name: gofmt check
+        run: |
+          if [ "$(gofmt -s -l . | wc -l)" -ne 0 ]
+          then
+           echo "The following files were found to be not go formatted:"
+           gofmt -s -l .
+           exit 1
+          fi
+          
