@@ -1,3 +1,10 @@
-# This program prints Hello, world!
-
-print('Hello, world!')
+// First Go program
+package main
+  
+import "fmt"
+  
+// Main function
+func main() {
+  
+    fmt.Println("!... Hello World ...!")
+}
